@@ -2,16 +2,13 @@ const http = require('http')
 const fs = require('fs')
 const path = require('path')
 
-const { callbackify } = require('util')
-
-http.createServer((req, res)=>{
-
-    if(req.url==='/')
-        fs.readFile(path.join(__dirname,'public','index.html'),(err,content)=>{
+http.createServer((req,res)=>{
+	if(req.url === '/')
+        fs.readFile(path.join(__dirname,'public','index.html'), (err,content)=>{
             if(err) throw err
             res.end(content)
         })
 
 }).listen(5000,()=>{
-    console.log('servidor rodando.....')
+    console.log('Servidor rodando...')
 })

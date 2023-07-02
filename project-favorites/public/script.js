@@ -18,8 +18,10 @@ async function load() {
 load()
 */
 
-function addElement({ name, url }) {
-    // criem os códigos
+function addElement() {
+    const input = document.querySelector('input').value
+    const inputSplit = input.split(',')
+    ul.innerHTML += `<li><div><span>${inputSplit[0]}</span><a href="" target="_blank">${inputSplit[1]}</a></div><button onclick="removeElement()"><i class="fa-solid fa-trash"></i></button></li>` 
 }
 
 function removeElement(element) {
@@ -43,8 +45,8 @@ form.addEventListener('submit', (event) => {
     if (!/^http/.test(url))
         return alert('Digite a url da maneira correta.')
 
-    addElement({ name, url })
+    // addElement({ name, url })
 
-    input.value = ''
+    // input.value = ''
 
 })
