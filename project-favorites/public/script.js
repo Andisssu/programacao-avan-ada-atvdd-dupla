@@ -21,11 +21,14 @@ load()
 function addElement() {
     const input = document.querySelector('input').value
     const inputSplit = input.split(',')
-    ul.innerHTML += `<li><div><span>${inputSplit[0]}</span><a href="" target="_blank">${inputSplit[1]}</a></div><button onclick="removeElement()"><i class="fa-solid fa-trash"></i></button></li>` 
+    ul.innerHTML += `<li id="${ul.children.length}"><div><span>${inputSplit[0]}</span><a href="" target="_blank">${inputSplit[1]}</a></div><button onclick="removeElement()"><i class="fa-solid fa-trash"></i></button></li>` 
 }
 
 function removeElement(element) {
-    // criem os códigos
+    const listLi = document.querySelectorAll('ul li')
+    for (let i = 0; li=listLi[0]; i++) {
+        li.parentNode.removeChild(li)
+    }
 }
 
 form.addEventListener('submit', (event) => {
