@@ -18,17 +18,27 @@ async function load() {
 load()
 */
 
-function addElement() {
-    const input = document.querySelector('input').value
-    const inputSplit = input.split(',')
-    ul.innerHTML += `<li id="${ul.children.length}"><div><span>${inputSplit[0]}</span><a href="" target="_blank">${inputSplit[1]}</a></div><button onclick="removeElement()"><i class="fa-solid fa-trash"></i></button></li>` 
-}
+function addElement({ name, url }) {
 
+    const li = document.createElement('li')
+    const a = document.createElement("a")
+    const trash = document.createElement("span")
+
+    a.href = url
+    a.innerHTML = name
+    a.target = "_blank"
+
+    trash.innerHTML = `<button onclick="removeElement()"><i class="fa-solid fa-trash"></i></button>`
+    trash.onclick = () => removeElement(trash)
+    
+    ul.append(li)
+    li.append(a)
+    li.append(trash)
+    
+}
 function removeElement(element) {
-    const listLi = document.querySelectorAll('ul li')
-    for (let i = 0; li=listLi[0]; i++) {
-        li.parentNode.removeChild(li)
-    }
+    if (confirm('Tem certeza que deseja deletar?'))
+        element.parentNode.remove()
 }
 
 form.addEventListener('submit', (event) => {
@@ -48,8 +58,8 @@ form.addEventListener('submit', (event) => {
     if (!/^http/.test(url))
         return alert('Digite a url da maneira correta.')
 
-    // addElement({ name, url })
+    addElement({ name, url })
 
-    // input.value = ''
+    input.value = ''
 
 })
