@@ -89,3 +89,42 @@ form.addEventListener('submit', (event) => {
     // Limpa o valor do campo de entrada
     input.value = '';
 })
+
+
+
+
+
+____________________________________________________________________________________________________________
+
+function editElement(element) {
+  const liRemover = element.parentNode;
+  const linkElement = liRemover.querySelector('a');
+  const url = linkElement.getAttribute('href');
+  const name = linkElement.textContent;
+
+  input.value = `${name},${url}`;
+
+  const ul = liRemover.parentNode;
+  const newLi = createNewLi(name, url);
+
+  ul.replaceChild(newLi, liRemover);
+}
+
+function createNewLi(name, url) {
+  const newLi = document.createElement('li');
+  const newLink = document.createElement('a');
+  newLink.href = url;
+  newLink.textContent = name;
+
+  const deleteButton = document.createElement('button');
+  deleteButton.textContent = 'Deletar';
+  deleteButton.addEventListener('click', function() {
+    removeElement(this);
+  });
+
+  newLi.appendChild(newLink);
+  newLi.appendChild(deleteButton);
+
+  return newLi;
+}
+
